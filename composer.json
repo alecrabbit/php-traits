@@ -1,0 +1,29 @@
+{
+    "name": "alecrabbit/accessories",
+    "type": "library",
+    "description": "PHP accessories Classes etc.",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.2",
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^2.1",
+        "phpstan/phpstan": "^0.10.5",
+        "phpunit/phpunit": "^7.5",
+        "symfony/var-dumper": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "AlecRabbit\\": "src"
+        },
+        "files": [
+            "src/Constants/constants.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "prefer-stable": true
+}
