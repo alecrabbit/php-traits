@@ -19,6 +19,13 @@ trait DoesProcessException
         return $this;
     }
 
+    /** @return self */
+    public function throwOnError(): self
+    {
+        $this->throwOnError = true;
+        return $this;
+    }
+
     /**
      * @param \Throwable $e
      * @throws \Throwable
@@ -50,5 +57,10 @@ trait DoesProcessException
                 }
             }
         }
+    }
+
+    public function doesThrowsOnError(): bool
+    {
+        return $this->throwOnError;
     }
 }
