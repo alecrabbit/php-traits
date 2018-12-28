@@ -26,6 +26,12 @@ trait DoesProcessException
         return $this;
     }
 
+    /** @return bool */
+    public function doesThrowsOnError(): bool
+    {
+        return $this->throwOnError;
+    }
+
     /**
      * @param \Throwable $e
      * @throws \Throwable
@@ -35,8 +41,8 @@ trait DoesProcessException
         if ($this->throwOnError) {
             throw $e;
         }
-        $hasDumpFunction = \function_exists('dump');
         if (\defined('APP_DEBUG') && APP_DEBUG) {
+            $hasDumpFunction = \function_exists('dump');
             if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
                 $exceptionMessage = '[' . \get_class($e) . '] ' . $e->getMessage();
                 if ($hasDumpFunction) {
@@ -57,10 +63,5 @@ trait DoesProcessException
                 }
             }
         }
-    }
-
-    public function doesThrowsOnError(): bool
-    {
-        return $this->throwOnError;
     }
 }
