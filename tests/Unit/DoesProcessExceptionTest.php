@@ -35,6 +35,7 @@ class DoesProcessExceptionTest extends TestCase
     {
         $o = new HasTraitDoesProcessException();
         $o->doNotThrowOnError();
+        $this->assertFalse($o->doesThrowsOnError());
         $o->process();
         $this->assertTrue(true);
     }
@@ -43,6 +44,8 @@ class DoesProcessExceptionTest extends TestCase
     public function _processNotThrows(): void
     {
         $o = new HasTraitDoesProcessException();
+        $o->throwOnError();
+        $this->assertTrue($o->doesThrowsOnError());
         $this->expectException(\Exception::class);
         $o->process();
     }
