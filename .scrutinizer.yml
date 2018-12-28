@@ -12,3 +12,10 @@ build:
           coverage:
             file: clover.xml
             format: clover
+
+filter:
+  paths:
+    - src/
+
+  excluded_paths:
+    - tests/
