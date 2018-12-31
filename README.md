@@ -1,4 +1,4 @@
-# PHP accessories
+# PHP useful traits
 
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.2-8FA0BF.svg)](https://php.net/)
 [![Build Status](https://travis-ci.org/alecrabbit/php-traits.svg?branch=master)](https://travis-ci.org/alecrabbit/php-traits)
@@ -10,4 +10,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/alecrabbit/php-traits/v/unstable)](https://packagist.org/packages/alecrabbit/php-traits)
 [![License](https://poser.pugx.org/alecrabbit/php-traits/license)](https://packagist.org/packages/alecrabbit/php-traits)
 
-
+##### Name related traits
+[Nameable](docs/Nameable.md)
+##### DoesProcessException
+[DoesProcessException](docs/DoesProcessException.md)

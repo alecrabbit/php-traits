@@ -1,9 +1,4 @@
 <?php
-/**
- * User: alec
- * Date: 28.12.18
- * Time: 15:43
- */
 // snippet
 if (!defined('APP_DEBUG')) {
     define('APP_DEBUG', true);
