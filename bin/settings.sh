@@ -71,14 +71,22 @@ SOURCE_DIR="src"
 PHPSTAN_LEVEL=7
 PSALM_CONFIG="./../psalm.xml"
 PSALM_LEVEL=3
-PHPMETRICS_OUTPUT_DIR="./tests/phpmetrics"
-PHPUNIT_COVERAGE_HTML_REPORT="./tests/coverage/html"
-PHPUNIT_COVERAGE_CLOVER_REPORT="./tests/coverage/clover.xml"
+TESTS_DIR="tests"
+TMP_DIR_PARTIAL="tmp"
+TMP_DIR="./${TESTS_DIR}/${TMP_DIR_PARTIAL}"
+PHPMETRICS_DIR="phpmetrics"
+COVERAGE_DIR="coverage"
+PHPMETRICS_OUTPUT_DIR="${TMP_DIR}/${PHPMETRICS_DIR}"
+PHPUNIT_COVERAGE_HTML_REPORT="${TMP_DIR}/${COVERAGE_DIR}/html"
+PHPUNIT_COVERAGE_CLOVER_REPORT="${TMP_DIR}/${COVERAGE_DIR}/clover.xml"
+TEST_REPORT_INDEX="./../${TESTS_DIR}/report.html"
 
 if [[ ${COVERAGE} == 1 ]]
 then
-  DOCKER_COMPOSE_FILE="./../docker-compose-xdebug.yml"
+  DOCKER_COMPOSE_FILE="./../docker-compose-debug.yml"
 else
   DOCKER_COMPOSE_FILE="./../docker-compose.yml"
 fi
+
+DOCKER_ENV_FILE="./../.env"
 

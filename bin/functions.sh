@@ -78,3 +78,17 @@ options_enabled () {
 
 }
 
+generate_report_file () {
+    echo "<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Report</h1>
+
+<p>Some link could be empty</p>
+<a href='${TMP_DIR_PARTIAL}/${COVERAGE_DIR}/html/index.html'>Coverage report</a><br>
+<a href='${TMP_DIR_PARTIAL}/${PHPMETRICS_DIR}/index.html'>Phpmetrics report</a><br>
+
+</body>
+</html>" > ${TEST_REPORT_INDEX}
+}

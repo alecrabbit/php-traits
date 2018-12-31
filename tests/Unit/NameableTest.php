@@ -5,7 +5,7 @@
  * Time: 0:02
  */
 
-namespace Unit;
+namespace AlecRabbit\Tests\Unit;
 
 
 use const AlecRabbit\Constants\Accessories\DEFAULT_NAME;
