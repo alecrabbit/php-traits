@@ -27,7 +27,34 @@
      * @param \Throwable $e
      * @throws \Throwable
      */
-    protected function processException(\Throwable $e): void;
+    protected function processException(\Throwable $e): void
+    {
+        if ($this->throwOnError) {
+            throw $e;
+        }
+        if (\defined('APP_DEBUG') && APP_DEBUG) {
+            $hasDumpFunction = \function_exists('dump');
+            if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+                $exceptionMessage = '[' . \get_class($e) . '] ' . $e->getMessage();
+                if ($hasDumpFunction) {
+                    dump($exceptionMessage, $e->getTraceAsString());
+                } else {
+                    // @codeCoverageIgnoreStart
+                    var_dump($exceptionMessage, $e->getTraceAsString());
+                    // @codeCoverageIgnoreEnd
+                }
+            }
+            if (\defined('DEBUG_DUMP_EXCEPTION_CLASS') && DEBUG_DUMP_EXCEPTION_CLASS) {
+                if ($hasDumpFunction) {
+                    dump($e);
+                } else {
+                    // @codeCoverageIgnoreStart
+                    var_dump($e);
+                    // @codeCoverageIgnoreEnd
+                }
+            }
+        }
+    }
 ```
 ##### Usage
 ```php
