@@ -7,7 +7,7 @@
 
 namespace AlecRabbit\Traits;
 
-use const AlecRabbit\Constants\Traits\DEFAULT_NAME;
+use const \AlecRabbit\Constants\Traits\DEFAULT_NAME;
 
 trait DefaultableName
 {
