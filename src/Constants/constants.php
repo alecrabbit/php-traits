@@ -6,7 +6,7 @@
  */
 
 // @codeCoverageIgnoreStart
-namespace AlecRabbit\Constants\Accessories {
+namespace AlecRabbit\Constants\Traits {
 
     const DEFAULT_NAME = 'default_name';
 }
