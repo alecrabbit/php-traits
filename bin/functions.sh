@@ -32,7 +32,8 @@ if [[ ${HELP} == 1 ]]
 then
     echo "Options:"
     echo "  --help          - show this message"
-    [[ $OPTION_NO_RESTART ]] && echo "  --no-restart    - do not restart container(may cause 'No coverage driver')"
+    [[ $OPTION_NO_RESTART ]] && echo "  --no-restart    - do not restart container(may cause 'No coverage driver' and/or 'It seems like *app* is not installed.')"
+    [[ $OPTION_PHPUNIT ]] && echo "  --unit           - enable phpunit"
     [[ $OPTION_ANALYZE ]] && echo "  --analyze       - enable analysis"
     [[ $OPTION_COVERAGE ]] && echo "  --coverage      - enable code coverage"
     [[ $OPTION_ALL ]] && echo "  --all           - enable analysis and code coverage"
@@ -49,6 +50,13 @@ fi
 options_enabled () {
     printf "Analysis"
     if [[ ${ANALYZE} == 1 ]]
+    then
+        enabled
+    else
+        disabled
+    fi
+    printf "PHPUnit"
+    if [[ ${PHPUNIT} == 1 ]]
     then
         enabled
     else
@@ -81,11 +89,15 @@ options_enabled () {
 generate_report_file () {
     echo "<!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8">
+  <title>${HEADER}</title>
+</head>
 <body>
 
-<h1>Report</h1>
+<h1>Report &lt;${HEADER}&gt;</h1>
 
-<p>Some link could be empty</p>
+<p>Some links could be empty</p>
 <a href='${TMP_DIR_PARTIAL}/${COVERAGE_DIR}/html/index.html'>Coverage report</a><br>
 <a href='${TMP_DIR_PARTIAL}/${PHPMETRICS_DIR}/index.html'>Phpmetrics report</a><br>
 

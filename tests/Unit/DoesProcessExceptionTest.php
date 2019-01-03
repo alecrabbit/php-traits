@@ -31,7 +31,7 @@ class HasTraitDoesProcessException
 class DoesProcessExceptionTest extends TestCase
 {
     /** @test */
-    public function _processThrows(): void
+    public function _processDoesNotThrow(): void
     {
         $o = new HasTraitDoesProcessException();
         $o->doNotThrowOnError();
@@ -41,7 +41,7 @@ class DoesProcessExceptionTest extends TestCase
     }
 
     /** @test */
-    public function _processNotThrows(): void
+    public function _processThrows(): void
     {
         $o = new HasTraitDoesProcessException();
         $o->throwOnError();

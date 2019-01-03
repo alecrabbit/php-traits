@@ -16,6 +16,7 @@ fi
 # reassign variables
 OPTION_ANALYZE=1
 OPTION_COVERAGE=1
+OPTION_PHPUNIT=1
 OPTION_ALL=1
 OPTION_NO_RESTART=1
 
@@ -34,9 +35,10 @@ then
     ./restart-container.sh "$@"
 fi
 info "Processing..."
-
-./phpunit "$@"
-
+if [[ ${PHPUNIT} == 1 ]]
+then
+  ./phpunit "$@"
+fi
 if [[ ${ANALYZE} == 1 ]]
 then
   ./phpmetrics "$@"

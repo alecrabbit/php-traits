@@ -3,6 +3,7 @@ COVERAGE=0
 PROPAGATE=0
 ANALYZE=0
 BEAUTY=0
+PHPUNIT=0
 EXEC=1
 HELP=0
 RESTART_CONTAINER=1
@@ -14,7 +15,7 @@ do
         --propagate)
             PROPAGATE=1
             ;;
-     esac
+    esac
 done
 
 for arg
@@ -32,6 +33,9 @@ do
             ;;
         --no-restart)
             RESTART_CONTAINER=0
+            ;;
+        --unit)
+            PHPUNIT=1
             ;;
         --analyze)
             ANALYZE=1
@@ -51,6 +55,7 @@ do
         --all)
             ANALYZE=1
             COVERAGE=1
+            PHPUNIT=1
             BEAUTY=1
             ;;
         *)
@@ -80,6 +85,7 @@ PHPMETRICS_OUTPUT_DIR="${TMP_DIR}/${PHPMETRICS_DIR}"
 PHPUNIT_COVERAGE_HTML_REPORT="${TMP_DIR}/${COVERAGE_DIR}/html"
 PHPUNIT_COVERAGE_CLOVER_REPORT="${TMP_DIR}/${COVERAGE_DIR}/clover.xml"
 TEST_REPORT_INDEX="./../${TESTS_DIR}/report.html"
+HEADER="$(basename $(dirname "$(pwd)"))"
 
 if [[ ${COVERAGE} == 1 ]]
 then
