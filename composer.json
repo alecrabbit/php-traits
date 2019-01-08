@@ -17,7 +17,7 @@
             "AlecRabbit\\": "src"
         },
         "files": [
-            "src/Constants/Traits.php"
+            "src/Traits/Constants.php"
         ]
     },
     "autoload-dev": {

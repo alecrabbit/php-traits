@@ -8,7 +8,7 @@
 namespace AlecRabbit\Tests\Unit;
 
 
-use const AlecRabbit\Constants\Traits\DEFAULT_NAME;
+use const AlecRabbit\Traits\Constants\DEFAULT_NAME;
 use AlecRabbit\Traits\Nameable;
 use PHPUnit\Framework\TestCase;
 
