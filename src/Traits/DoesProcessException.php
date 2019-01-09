@@ -38,10 +38,10 @@ trait DoesProcessException
      */
     protected function processException(\Throwable $e): void
     {
+        $this->debugException($e);
         if ($this->throwOnError) {
             throw $e;
         }
-        $this->debugException($e);
     }
 
     /**

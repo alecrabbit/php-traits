@@ -1,4 +1,5 @@
 ##### trait DoesProcessException
+*** outdated, slightly inaccurate 
 ```php
     /** @var bool */
     protected $throwOnError = true;
@@ -22,6 +23,7 @@
     {
         return $this->throwOnError;
     }
+
 
     /**
      * @param \Throwable $e
