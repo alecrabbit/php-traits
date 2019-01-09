@@ -41,27 +41,36 @@ trait DoesProcessException
         if ($this->throwOnError) {
             throw $e;
         }
+        $this->debugException($e);
+    }
+
+    /**
+     * @param \Throwable $e
+     */
+    protected function debugException(\Throwable $e): void
+    {
         if (\defined('APP_DEBUG') && APP_DEBUG) {
-            $hasDumpFunction = \function_exists('dump');
             if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
                 $exceptionMessage = '[' . \get_class($e) . '] ' . $e->getMessage();
-                if ($hasDumpFunction) {
-                    dump($exceptionMessage, $e->getTraceAsString());
-                } else {
-                    // @codeCoverageIgnoreStart
-                    var_dump($exceptionMessage, $e->getTraceAsString());
-                    // @codeCoverageIgnoreEnd
-                }
+                $this->dump($exceptionMessage, $e->getTraceAsString());
             }
             if (\defined('DEBUG_DUMP_EXCEPTION_CLASS') && DEBUG_DUMP_EXCEPTION_CLASS) {
-                if ($hasDumpFunction) {
-                    dump($e);
-                } else {
-                    // @codeCoverageIgnoreStart
-                    var_dump($e);
-                    // @codeCoverageIgnoreEnd
-                }
+                $this->dump($e);
             }
+        }
+    }
+
+    /**
+     * @param mixed ...$that
+     */
+    protected function dump(...$that): void
+    {
+        if (\function_exists('dump')) {
+            dump(...$that);
+        } else {
+            // @codeCoverageIgnoreStart
+            var_dump(...$that);
+            // @codeCoverageIgnoreEnd
         }
     }
 }
