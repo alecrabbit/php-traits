@@ -8,7 +8,7 @@
     },
     "require-dev": {
         "nunomaduro/collision": "^2.1",
-        "phpstan/phpstan": "^0.10.5",
+        "phpstan/phpstan": "^0.10.8",
         "phpunit/phpunit": "^7.5",
         "symfony/var-dumper": "^4.2"
     },
@@ -22,7 +22,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "AlecRabbit\\Tests\\": "tests"
+            "AlecRabbit\\Tests\\Traits\\": "tests"
         }
     },
     "prefer-stable": true

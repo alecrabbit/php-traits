@@ -6,7 +6,7 @@
  */
 declare(strict_types=1);
 
-namespace AlecRabbit\Tests\Unit;
+namespace AlecRabbit\Tests\Traits;
 
 use AlecRabbit\Traits\DoesProcessException;
 use PHPUnit\Framework\TestCase;
