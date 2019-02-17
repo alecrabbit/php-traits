@@ -33,10 +33,11 @@ then
     echo "Options:"
     echo "  --help          - show this message"
     [[ $OPTION_NO_RESTART ]] && echo "  --no-restart    - do not restart container(may cause 'No coverage driver' and/or 'It seems like *app* is not installed.')"
-    [[ $OPTION_PHPUNIT ]] && echo "  --unit           - enable phpunit"
-    [[ $OPTION_ANALYZE ]] && echo "  --analyze       - enable analysis"
-    [[ $OPTION_COVERAGE ]] && echo "  --coverage      - enable code coverage"
-    [[ $OPTION_ALL ]] && echo "  --all           - enable analysis and code coverage"
+    [[ $OPTION_PHPUNIT ]] && echo "  --unit          - enable phpunit"
+    [[ $OPTION_ANALYZE ]] && echo "  --analyze       - enable analysis(PHPStan, Psalm)"
+    [[ $OPTION_METRICS ]] && echo "  --metrics       - enable PHPMetrics"
+    [[ $OPTION_COVERAGE ]] && echo "  --coverage      - enable code coverage(PHPUnit)"
+    [[ $OPTION_ALL ]] && echo "  --all           - enable analysis, code coverage and code_sniffer with beautifier"
     [[ $OPTION_BEAUTY ]] && echo "  --beautify      - enable code beautifier"
     [[ $OPTION_BEAUTY ]] && echo "  --beauty        - same as above"
     [[ $OPTION_PROPAGATE ]] && echo "  --propagate     - propagate unrecognized options to underlying script"
@@ -50,6 +51,13 @@ fi
 options_enabled () {
     printf "Analysis"
     if [[ ${ANALYZE} == 1 ]]
+    then
+        enabled
+    else
+        disabled
+    fi
+    printf "PHPMetrics"
+    if [[ ${METRICS} == 1 ]]
     then
         enabled
     else

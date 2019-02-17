@@ -50,13 +50,8 @@ trait DoesProcessException
     protected function debugException(\Throwable $e): void
     {
         if (\defined('APP_DEBUG') && APP_DEBUG) {
-            if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
-                $exceptionMessage = '[' . \get_class($e) . '] ' . $e->getMessage();
-                $this->dump($exceptionMessage, $e->getTraceAsString());
-            }
-            if (\defined('DEBUG_DUMP_EXCEPTION_CLASS') && DEBUG_DUMP_EXCEPTION_CLASS) {
-                $this->dump($e);
-            }
+            $this->dumpExceptionMessage($e);
+            $this->dumpExceptionObject($e);
         }
     }
 
@@ -71,6 +66,29 @@ trait DoesProcessException
             // @codeCoverageIgnoreStart
             var_dump(...$that);
             // @codeCoverageIgnoreEnd
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     */
+    protected function dumpExceptionMessage(\Throwable $e): void
+    {
+        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+            $this->dump(
+                '[' . \get_class($e) . '] ' . $e->getMessage(),
+                $e->getTraceAsString()
+            );
+        }
+    }
+
+    /**
+     * @param \Throwable $e
+     */
+    protected function dumpExceptionObject(\Throwable $e): void
+    {
+        if (\defined('DEBUG_DUMP_EXCEPTION_CLASS') && DEBUG_DUMP_EXCEPTION_CLASS) {
+            $this->dump($e);
         }
     }
 }

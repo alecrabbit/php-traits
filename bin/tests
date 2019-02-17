@@ -15,6 +15,7 @@ fi
 
 # reassign variables
 OPTION_ANALYZE=1
+OPTION_METRICS=1
 OPTION_COVERAGE=1
 OPTION_PHPUNIT=1
 OPTION_ALL=1
@@ -26,9 +27,8 @@ header "Tests and coverage script"
 if [[ ${EXEC} == 0 ]]
 then
     echo "No-Exec selected."
-else
-    options_enabled
 fi
+options_enabled
 
 if [[ ${RESTART_CONTAINER} == 1 ]]
 then
@@ -39,20 +39,22 @@ if [[ ${PHPUNIT} == 1 ]]
 then
   ./phpunit "$@"
 fi
-if [[ ${ANALYZE} == 1 ]]
+if [[ ${METRICS} == 1 ]]
 then
   ./phpmetrics "$@"
-
+fi
+if [[ ${ANALYZE} == 1 ]]
+then
   ./phpstan "$@"
 
   ./psalm "$@"
 
-  ./phpcs "$@"
+  ./php-cs "$@"
 fi
 generate_report_file
 if [[ ${BEAUTY} == 1 ]]
 then
-  ./phpcbf "$@"
+  ./php-cbf "$@"
 fi
 
 

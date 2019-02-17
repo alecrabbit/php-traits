@@ -4,6 +4,7 @@ PROPAGATE=0
 ANALYZE=0
 BEAUTY=0
 PHPUNIT=0
+METRICS=0
 EXEC=1
 HELP=0
 RESTART_CONTAINER=1
@@ -58,6 +59,9 @@ do
             PHPUNIT=1
             BEAUTY=1
             ;;
+        --metrics)
+            METRICS=1
+            ;;
         *)
             if [[ ${PROPAGATE} == 1 ]]
                 then
@@ -78,12 +82,13 @@ PSALM_CONFIG="./../psalm.xml"
 PSALM_LEVEL=3
 TESTS_DIR="tests"
 TMP_DIR_PARTIAL="tmp"
-TMP_DIR="./${TESTS_DIR}/${TMP_DIR_PARTIAL}"
+TMP_DIR="${TESTS_DIR}/${TMP_DIR_PARTIAL}"
 PHPMETRICS_DIR="phpmetrics"
 COVERAGE_DIR="coverage"
 PHPMETRICS_OUTPUT_DIR="${TMP_DIR}/${PHPMETRICS_DIR}"
 PHPUNIT_COVERAGE_HTML_REPORT="${TMP_DIR}/${COVERAGE_DIR}/html"
 PHPUNIT_COVERAGE_CLOVER_REPORT="${TMP_DIR}/${COVERAGE_DIR}/clover.xml"
+XDEBUG_FILTER_FILE="${TMP_DIR}/xdebug-filter.php"
 TEST_REPORT_INDEX="./../${TESTS_DIR}/report.html"
 HEADER="$(basename $(dirname "$(pwd)"))"
 
