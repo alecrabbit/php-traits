@@ -12,4 +12,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 [Unreleased]: https://github.com/alecrabbit/php-traits/compare/0.0.3...HEAD
-[0.4.1-RC1]: https://github.com/alecrabbit/php-traits/compare/0.0.2...0.0.3
+[0.0.3]: https://github.com/alecrabbit/php-traits/compare/0.0.2...0.0.3
