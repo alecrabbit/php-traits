@@ -5,7 +5,7 @@ if (!defined('APP_DEBUG')) {
 }
 
 // snippet
-if (defined('APP_DEBUG') && APP_DEBUG ) {
+if (defined('APP_DEBUG') && APP_DEBUG) {
     if (!defined('DEBUG_DUMP_EXCEPTION')) {
         define('DEBUG_DUMP_EXCEPTION', true); // change to 'true' to dump exception message and trace
     }
