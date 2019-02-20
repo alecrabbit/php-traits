@@ -1,9 +1,5 @@
 <?php
-/**
- * User: alec
- * Date: 12.10.18
- * Time: 15:12
- */
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\VarDumper\Cloner\VarCloner;
