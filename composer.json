@@ -4,7 +4,7 @@
     "description": "PHP traits to use in every project :)",
     "license": "MIT",
     "require": {
-        "php": ">=7.2"
+        "php": "^7.2"
     },
     "require-dev": {
         "nunomaduro/collision": "^2.1",
