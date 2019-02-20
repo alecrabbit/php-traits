@@ -1,14 +1,13 @@
 {
     "name": "alecrabbit/php-traits",
     "type": "library",
-    "description": "PHP accessories Classes etc.",
+    "description": "PHP traits to use in every project :)",
     "license": "MIT",
     "require": {
         "php": ">=7.2"
     },
     "require-dev": {
         "nunomaduro/collision": "^2.1",
-        "phpstan/phpstan": "^0.10.8",
         "phpunit/phpunit": "^7.5",
         "symfony/var-dumper": "^4.2"
     },
