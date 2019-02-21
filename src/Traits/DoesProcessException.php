@@ -15,6 +15,9 @@ trait DoesProcessException
     /** @var bool */
     protected $dumpTrace = true;
 
+    /** @var bool */
+    protected $doDumpException = false;
+
     /** @return self */
     public function doNotThrowOnError(): self
     {
@@ -51,7 +54,7 @@ trait DoesProcessException
      */
     protected function processException(\Throwable $e): void
     {
-        $this->debugException($e);
+        $this->dumpException($e);
         if ($this->throwOnError) {
             throw $e;
         }
@@ -60,9 +63,11 @@ trait DoesProcessException
     /**
      * @param \Throwable $e
      */
-    protected function debugException(\Throwable $e): void
+    protected function dumpException(\Throwable $e): void
     {
         if (\defined('APP_DEBUG') && APP_DEBUG) {
+            $this->checkEnv();
+            $this->dumpExceptionClass($e);
             $this->dumpExceptionMessage($e);
             if ($this->doesDumpTrace()) {
                 $this->dumpExceptionTrace($e);
@@ -74,10 +79,10 @@ trait DoesProcessException
     /**
      * @param \Throwable $e
      */
-    protected function dumpExceptionMessage(\Throwable $e): void
+    protected function dumpExceptionClass(\Throwable $e): void
     {
-        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
-            $this->dump('[' . \get_class($e) . '] ' . $e->getMessage());
+        if ($this->doDumpException) {
+            $this->dump('[' . \get_class($e) . ']');
         }
     }
 
@@ -93,6 +98,15 @@ trait DoesProcessException
         }
     }  // @codeCoverageIgnoreEnd
 
+    /**
+     * @param \Throwable $e
+     */
+    protected function dumpExceptionMessage(\Throwable $e): void
+    {
+        if ($this->doDumpException) {
+            $this->dump($e->getMessage());
+        }
+    }
 
     /**
      * @return bool
@@ -107,7 +121,7 @@ trait DoesProcessException
      */
     protected function dumpExceptionTrace(\Throwable $e): void
     {
-        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+        if ($this->doDumpException) {
             $this->dump($e->getTraceAsString());
         }
     }
@@ -117,8 +131,15 @@ trait DoesProcessException
      */
     protected function dumpExceptionObject(\Throwable $e): void
     {
-        if (\defined('DEBUG_DUMP_EXCEPTION_CLASS') && DEBUG_DUMP_EXCEPTION_CLASS) {
+        if (\defined('DEBUG_DUMP_EXCEPTION_OBJECT') && DEBUG_DUMP_EXCEPTION_OBJECT) {
             $this->dump($e);
+        }
+    }
+
+    protected function checkEnv(): void
+    {
+        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+            $this->doDumpException = true;
         }
     }
 }

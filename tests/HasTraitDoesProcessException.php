@@ -20,7 +20,7 @@ class HasTraitDoesProcessException
     public function process(): void
     {
         try {
-            throw new \Exception($this->exceptionMessage);
+            throw new $this->exceptionClass($this->exceptionMessage);
         } catch (\Throwable $e) {
             $this->processException($e);
         }
