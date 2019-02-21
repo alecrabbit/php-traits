@@ -1,1 +1,2 @@
+- [ ] rewrite DoesProcessExceptionTest to "silent mode"
 - [x] add TODO.md file
