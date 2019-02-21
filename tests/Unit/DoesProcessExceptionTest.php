@@ -1,10 +1,4 @@
-<?php
-/**
- * User: alec
- * Date: 28.12.18
- * Time: 15:39
- */
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace AlecRabbit\Tests\Traits;
 
@@ -16,10 +10,18 @@ class DoesProcessExceptionTest extends TestCase
     public function processDoesNotThrow(): void
     {
         $o = new HasTraitDoesProcessException();
-        $o->doNotThrowOnError();
+        $o
+            ->doNotThrowOnError()
+            ->setDumpTrace(true);
         $this->assertFalse($o->doesThrowsOnError());
+        $this->assertTrue($o->doesDumpTrace());
         $o->process();
-        $this->assertTrue(true);
+        $this->assertContains($o->exceptionMessage, $o->output);
+        $this->assertContains($o->exceptionClass, $o->output);
+        $this->assertContains(
+            str_replace('\\', '\\\\', HasTraitDoesProcessException::class),
+            $o->output
+        );
     }
 
     /** @test */
@@ -27,8 +29,10 @@ class DoesProcessExceptionTest extends TestCase
     {
         $o = new HasTraitDoesProcessException();
         $o->throwOnError();
+        $o->setDumpTrace(false);
+        $this->assertFalse($o->doesDumpTrace());
         $this->assertTrue($o->doesThrowsOnError());
-        $this->expectException(\Exception::class);
+        $this->expectException($o->exceptionClass);
         $o->process();
     }
 }

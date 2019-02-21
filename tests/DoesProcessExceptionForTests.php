@@ -9,11 +9,11 @@ trait DoesProcessExceptionForTests
 {
     use DoesProcessException;
 
-    /**
-     * @param mixed ...$that
-     */
-    protected function dump(...$that): void
-    {
-        // Intentionally left blank
-    }
+//    /**
+//     * @param mixed ...$that
+//     */
+//    protected function dump(...$that): void
+//    {
+//        // Intentionally left blank
+//    }
 }
