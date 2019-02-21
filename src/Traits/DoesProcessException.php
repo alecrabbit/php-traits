@@ -76,7 +76,14 @@ trait DoesProcessException
         }
     }
 
-    /**
+    protected function checkEnv(): void
+    {
+        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+            $this->doDumpException = true;
+        }
+    }
+
+        /**
      * @param \Throwable $e
      */
     protected function dumpExceptionClass(\Throwable $e): void
@@ -96,7 +103,7 @@ trait DoesProcessException
         } else {
             var_dump(...$that);
         }
-    }  // @codeCoverageIgnoreEnd
+    } // @codeCoverageIgnoreEnd
 
     /**
      * @param \Throwable $e
@@ -133,13 +140,6 @@ trait DoesProcessException
     {
         if (\defined('DEBUG_DUMP_EXCEPTION_OBJECT') && DEBUG_DUMP_EXCEPTION_OBJECT) {
             $this->dump($e);
-        }
-    }
-
-    protected function checkEnv(): void
-    {
-        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
-            $this->doDumpException = true;
         }
     }
 }
