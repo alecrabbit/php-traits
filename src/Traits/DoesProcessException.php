@@ -71,16 +71,16 @@ trait DoesProcessException
     /**
      * @param mixed ...$that
      */
+    // @codeCoverageIgnoreStart
     protected function dump(...$that): void
     {
-        // @codeCoverageIgnoreStart
         if (\function_exists('dump')) {
             dump(...$that);
         } else {
             var_dump(...$that);
         }
-        // @codeCoverageIgnoreEnd
     }
+    // @codeCoverageIgnoreEnd
 
     /**
      * @param \Throwable $e

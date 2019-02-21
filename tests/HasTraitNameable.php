@@ -18,4 +18,3 @@ class HasTraitNameable
         $this->name = $this->defaultName($name);
     }
 }
-
