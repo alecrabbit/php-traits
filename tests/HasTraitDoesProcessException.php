@@ -3,9 +3,11 @@
 
 namespace AlecRabbit\Tests\Traits;
 
+use AlecRabbit\Traits\DoesProcessException;
+
 class HasTraitDoesProcessException
 {
-    use DoesProcessExceptionForTests;
+    use DoesProcessException;
 
     /** @var string */
     public $output = '';
