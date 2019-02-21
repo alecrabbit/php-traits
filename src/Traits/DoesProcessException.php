@@ -12,6 +12,9 @@ trait DoesProcessException
     /** @var bool */
     protected $throwOnError = true;
 
+    /** @var bool */
+    protected $dumpTrace = true;
+
     /** @return self */
     public function doNotThrowOnError(): self
     {
@@ -33,6 +36,24 @@ trait DoesProcessException
     }
 
     /**
+     * @return bool
+     */
+    public function doesDumpTrace(): bool
+    {
+        return $this->dumpTrace;
+    }
+
+    /**
+     * @param bool $dumpTrace
+     * @return self
+     */
+    public function setDumpTrace(bool $dumpTrace): self
+    {
+        $this->dumpTrace = $dumpTrace;
+        return $this;
+    }
+
+    /**
      * @param \Throwable $e
      * @throws \Throwable
      */
@@ -51,6 +72,9 @@ trait DoesProcessException
     {
         if (\defined('APP_DEBUG') && APP_DEBUG) {
             $this->dumpExceptionMessage($e);
+            if ($this->doesDumpTrace()) {
+                $this->dumpExceptionTrace($e);
+            }
             $this->dumpExceptionObject($e);
         }
     }
@@ -61,10 +85,17 @@ trait DoesProcessException
     protected function dumpExceptionMessage(\Throwable $e): void
     {
         if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
-            $this->dump(
-                '[' . \get_class($e) . '] ' . $e->getMessage(),
-                $e->getTraceAsString()
-            );
+            $this->dump('[' . \get_class($e) . '] ' . $e->getMessage());
+        }
+    }
+
+
+    protected function dump(...$that): void
+    {
+        if (\function_exists('dump')) {
+            dump(...$that);
+        } else {
+            var_dump(...$that);
         }
     }
 
@@ -72,12 +103,13 @@ trait DoesProcessException
      * @param mixed ...$that
      */
     // @codeCoverageIgnoreStart
-    protected function dump(...$that): void
+    /**
+     * @param \Throwable $e
+     */
+    protected function dumpExceptionTrace(\Throwable $e): void
     {
-        if (\function_exists('dump')) {
-            dump(...$that);
-        } else {
-            var_dump(...$that);
+        if (\defined('DEBUG_DUMP_EXCEPTION') && DEBUG_DUMP_EXCEPTION) {
+            $this->dump($e->getTraceAsString());
         }
     }
     // @codeCoverageIgnoreEnd
