@@ -36,14 +36,6 @@ trait DoesProcessException
     }
 
     /**
-     * @return bool
-     */
-    public function doesDumpTrace(): bool
-    {
-        return $this->dumpTrace;
-    }
-
-    /**
      * @param bool $dumpTrace
      * @return self
      */
@@ -89,20 +81,27 @@ trait DoesProcessException
         }
     }
 
-
-    protected function dump(...$that): void
+    /**
+     * @param mixed ...$that
+     */
+    protected function dump(...$that): void // @codeCoverageIgnoreStart
     {
         if (\function_exists('dump')) {
             dump(...$that);
         } else {
             var_dump(...$that);
         }
-    }
+    }  // @codeCoverageIgnoreEnd
+
 
     /**
-     * @param mixed ...$that
+     * @return bool
      */
-    // @codeCoverageIgnoreStart
+    public function doesDumpTrace(): bool
+    {
+        return $this->dumpTrace;
+    }
+
     /**
      * @param \Throwable $e
      */
@@ -112,7 +111,6 @@ trait DoesProcessException
             $this->dump($e->getTraceAsString());
         }
     }
-    // @codeCoverageIgnoreEnd
 
     /**
      * @param \Throwable $e
