@@ -7,24 +7,8 @@
 
 namespace AlecRabbit\Tests\Traits;
 
-
 use const AlecRabbit\Traits\Constants\DEFAULT_NAME;
-use AlecRabbit\Traits\Nameable;
 use PHPUnit\Framework\TestCase;
-
-class HasTraitNameable
-{
-    use Nameable;
-
-    /**
-     * TraitsTesting constructor.
-     * @param null $name
-     */
-    public function __construct($name = null)
-    {
-        $this->name = $this->defaultName($name);
-    }
-}
 
 class NameableTest extends TestCase
 {
@@ -43,5 +27,4 @@ class NameableTest extends TestCase
         $this->assertInstanceOf(HasTraitNameable::class, $this->obj->setName('new'));
         $this->assertEquals('new', $this->obj->getName());
     }
-
 }
