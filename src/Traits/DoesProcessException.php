@@ -56,20 +56,6 @@ trait DoesProcessException
     }
 
     /**
-     * @param mixed ...$that
-     */
-    protected function dump(...$that): void
-    {
-        if (\function_exists('dump')) {
-            dump(...$that);
-        } else {
-            // @codeCoverageIgnoreStart
-            var_dump(...$that);
-            // @codeCoverageIgnoreEnd
-        }
-    }
-
-    /**
      * @param \Throwable $e
      */
     protected function dumpExceptionMessage(\Throwable $e): void
@@ -80,6 +66,20 @@ trait DoesProcessException
                 $e->getTraceAsString()
             );
         }
+    }
+
+    /**
+     * @param mixed ...$that
+     */
+    protected function dump(...$that): void
+    {
+        // @codeCoverageIgnoreStart
+        if (\function_exists('dump')) {
+            dump(...$that);
+        } else {
+            var_dump(...$that);
+        }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
