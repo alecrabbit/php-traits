@@ -1,5 +1,6 @@
 /bin               export-ignore
 /examples          export-ignore
+/docs              export-ignore
 /tests             export-ignore
 .editorconfig      export-ignore
 .gitattributes     export-ignore
@@ -16,3 +17,5 @@ phpunit.xml        export-ignore
 CHANGELOG.md       export-ignore
 TODO.md            export-ignore
 CONTRIBUTING.md    export-ignore
+README.md          export-ignore
+composer.lock      export-ignore
