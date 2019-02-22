@@ -1,2 +1,3 @@
-- [ ] rewrite DoesProcessExceptionTest to "silent mode"
+- [ ] move all to `AlecRabbit\Traits` namespace
+- [x] rewrite DoesProcessExceptionTest to "silent mode"
 - [x] add TODO.md file
