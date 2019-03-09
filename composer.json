@@ -9,7 +9,8 @@
     "require-dev": {
         "nunomaduro/collision": "^2.1",
         "phpunit/phpunit": "^7.5",
-        "symfony/var-dumper": "^4.2"
+        "symfony/var-dumper": "^4.2",
+        "kylekatarnls/multi-tester": "^1.1"
     },
     "autoload": {
         "psr-4": {
