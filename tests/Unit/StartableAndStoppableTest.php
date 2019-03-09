@@ -4,9 +4,9 @@ namespace AlecRabbit\Tests\Traits;
 
 use PHPUnit\Framework\TestCase;
 
-class StartableTest extends TestCase
+class StartableAndStoppableTest extends TestCase
 {
-    /** @var HasTraitStartable */
+    /** @var HasTraitStartableAndStoppable */
     private $obj;
 
     /** @test */
@@ -17,10 +17,17 @@ class StartableTest extends TestCase
         $this->obj->start();
         $this->assertTrue($this->obj->isStarted());
         $this->assertFalse($this->obj->isNotStarted());
+
+
+        $this->assertFalse($this->obj->isStopped());
+        $this->assertTrue($this->obj->isNotStopped());
+        $this->obj->stop();
+        $this->assertTrue($this->obj->isStopped());
+        $this->assertFalse($this->obj->isNotStopped());
     }
 
     protected function setUp()
     {
-        $this->obj = new HasTraitStartable();
+        $this->obj = new HasTraitStartableAndStoppable();
     }
 }
