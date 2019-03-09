@@ -37,6 +37,7 @@ fi
 info "Processing..."
 if [[ ${PHPUNIT} == 1 ]]
 then
+  docker-compose -f ${DOCKER_COMPOSE_FILE} exec app php -v
   ./phpunit "$@"
 fi
 if [[ ${METRICS} == 1 ]]
