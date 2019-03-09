@@ -3,7 +3,7 @@
 
 namespace AlecRabbit\Traits;
 
-trait HasStartAndStop
+trait StartableAndStoppable
 {
-    use HasStart, HasStop;
+    use Startable, Stoppable;
 }

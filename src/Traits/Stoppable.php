@@ -3,7 +3,7 @@
 
 namespace AlecRabbit\Traits;
 
-trait HasStop
+trait Stoppable
 {
     /** @var bool */
     protected $stopped = false;

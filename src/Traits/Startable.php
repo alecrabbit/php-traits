@@ -3,7 +3,7 @@
 
 namespace AlecRabbit\Traits;
 
-trait HasStart
+trait Startable
 {
     /** @var bool */
     protected $started = false;
