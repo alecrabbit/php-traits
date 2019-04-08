@@ -2,7 +2,6 @@
     "name": "alecrabbit/php-traits",
     "type": "library",
     "description": "PHP traits to use in every project :)",
-    "license": "MIT",
     "keywords": [
         "php",
         "traits",
@@ -12,14 +11,15 @@
         "name",
         "private"
     ],
+    "license": "MIT",
     "require": {
         "php": "^7.2"
     },
     "require-dev": {
-        "nunomaduro/collision": "^2.1",
-        "phpunit/phpunit": "^7.5",
-        "symfony/var-dumper": "^4.2",
-        "kylekatarnls/multi-tester": "^1.1"
+        "kylekatarnls/multi-tester": "^1.1",
+        "nunomaduro/collision": "^3.0",
+        "phpunit/phpunit": "^8.0",
+        "symfony/var-dumper": "^4.2"
     },
     "autoload": {
         "psr-4": {
