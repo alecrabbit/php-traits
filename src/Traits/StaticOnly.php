@@ -4,6 +4,10 @@ namespace AlecRabbit\Traits;
 
 trait StaticOnly
 {
+    /**
+     * StaticOnly private constructor.
+     * @codeCoverageIgnore
+     */
     private function __construct()
     {
     }
