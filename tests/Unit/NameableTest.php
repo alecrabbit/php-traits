@@ -10,7 +10,7 @@ class NameableTest extends TestCase
     /** @var HasTraitNameable */
     private $obj;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->obj = new HasTraitNameable();
     }

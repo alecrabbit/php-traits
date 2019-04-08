@@ -26,7 +26,7 @@ class StartableAndStoppableTest extends TestCase
         $this->assertFalse($this->obj->isNotStopped());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->obj = new HasTraitStartableAndStoppable();
     }

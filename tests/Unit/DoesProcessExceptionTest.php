@@ -16,9 +16,9 @@ class DoesProcessExceptionTest extends TestCase
         $this->assertFalse($o->doesThrowsOnError());
         $this->assertTrue($o->doesDumpTrace());
         $o->process();
-        $this->assertContains($o->exceptionMessage, $o->output);
-        $this->assertContains($o->exceptionClass, $o->output);
-        $this->assertContains(
+        $this->assertStringContainsString($o->exceptionMessage, $o->output);
+        $this->assertStringContainsString($o->exceptionClass, $o->output);
+        $this->assertStringContainsString(
             str_replace('\\', '\\\\', HasTraitDoesProcessException::class),
             $o->output
         );

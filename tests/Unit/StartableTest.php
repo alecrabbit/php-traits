@@ -19,7 +19,7 @@ class StartableTest extends TestCase
         $this->assertFalse($this->obj->isNotStarted());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->obj = new HasTraitStartable();
     }
