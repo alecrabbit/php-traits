@@ -13,9 +13,10 @@ then
     exit 1
 fi
 
-# reassign variables
+# reassign variables for help message
 OPTION_ANALYZE=1
 OPTION_METRICS=1
+OPTION_MULTI_TEST=1
 OPTION_COVERAGE=1
 OPTION_PHPUNIT=1
 OPTION_ALL=1
@@ -37,6 +38,7 @@ fi
 info "Processing..."
 if [[ ${PHPUNIT} == 1 ]]
 then
+  comment "PHP version:"
   docker-compose -f ${DOCKER_COMPOSE_FILE} exec app php -v
   ./phpunit "$@"
 fi
@@ -44,17 +46,28 @@ if [[ ${METRICS} == 1 ]]
 then
   ./phpmetrics "$@"
 fi
+if [[ ${MULTI_TEST} == 1 ]]
+then
+  ./multi "$@"
+fi
 if [[ ${ANALYZE} == 1 ]]
 then
   ./phpstan "$@"
 
   ./psalm "$@"
-
-  ./php-cs "$@"
 fi
-generate_report_file
+if [[ -e "${TEST_REPORT_INDEX}" ]]
+then
+    info "Report file found: ${TEST_REPORT_INDEX}"
+else
+    comment "Generating report file: ${TEST_REPORT_INDEX}"
+    generate_report_file
+fi
+
 if [[ ${BEAUTY} == 1 ]]
 then
+  ./php-cs "$@"
+
   ./php-cbf "$@"
 fi
 
