@@ -3,6 +3,15 @@
     "type": "library",
     "description": "PHP traits to use in every project :)",
     "license": "MIT",
+    "keywords": [
+        "php",
+        "traits",
+        "trait",
+        "start",
+        "stop",
+        "name",
+        "private"
+    ],
     "require": {
         "php": "^7.2"
     },
