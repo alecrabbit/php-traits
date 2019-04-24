@@ -3,9 +3,9 @@
 namespace AlecRabbit\Traits\ForReports\Core;
 
 use AlecRabbit\Traits\ForReports\Contracts\ReportableInterface;
-use AlecRabbit\Traits\ForReports\HasReport;
+use AlecRabbit\Traits\ForReports\Reportable;
 
-abstract class Reportable implements ReportableInterface
+abstract class CanReport implements ReportableInterface
 {
-    use HasReport;
+    use Reportable;
 }

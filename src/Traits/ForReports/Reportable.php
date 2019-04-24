@@ -2,10 +2,9 @@
 
 namespace AlecRabbit\Traits\ForReports;
 
-use AlecRabbit\Traits\ForReports\Contracts\ReportableInterface;
 use AlecRabbit\Traits\ForReports\Contracts\ReportInterface;
 
-trait HasReport
+trait Reportable
 {
     /** @var ReportInterface */
     protected $report;
@@ -19,9 +18,8 @@ trait HasReport
         if (true === $rebuild) {
             $this->meetConditions();
             $this->beforeReport();
-            /** @var ReportableInterface $that */
-            $that = $this;
-            $this->report->buildOn($that); // $that used for static analysis
+            /** @noinspection PhpParamsInspection */
+            $this->report->buildOn($this);
         }
         return
             $this->report;
