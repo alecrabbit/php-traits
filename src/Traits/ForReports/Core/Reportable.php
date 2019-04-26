@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace AlecRabbit\Traits\ForReports;
+namespace AlecRabbit\Traits\ForReports\Core;
 
+use AlecRabbit\Traits\ForReports\Contracts\ReportableInterface;
 use AlecRabbit\Traits\ForReports\Contracts\ReportInterface;
 
-trait Reportable
+abstract class Reportable implements ReportableInterface
 {
     /** @var ReportInterface */
     protected $report;
@@ -15,8 +16,9 @@ trait Reportable
      */
     public function report(bool $rebuild = true): ReportInterface
     {
+        $rebuild = $this->checkReport() || $rebuild;
         if (true === $rebuild) {
-            $this->meetConditions();
+            $this->checkConditions();
             $this->beforeReport();
             /** @noinspection PhpParamsInspection */
             $this->report->buildOn($this);
@@ -28,7 +30,7 @@ trait Reportable
     /**
      * Checks if all conditions needed for report are met
      */
-    protected function meetConditions(): void
+    protected function checkConditions(): void
     {
     }
 
@@ -37,5 +39,19 @@ trait Reportable
      */
     protected function beforeReport(): void
     {
+    }
+
+    abstract protected function createEmptyReport(): ReportInterface;
+
+    /**
+     * @return bool
+     */
+    protected function checkReport(): bool
+    {
+        if (null === $this->report) {
+            $this->report = $this->createEmptyReport();
+            return true;
+        }
+        return false;
     }
 }
