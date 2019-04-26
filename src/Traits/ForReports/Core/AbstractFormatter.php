@@ -20,11 +20,11 @@ abstract class AbstractFormatter implements FormatterInterface
     /**
      * @param Formattable $data
      * @param string $class
+     * @return \Throwable
      */
-    protected function assertData(Formattable $data, string $class): void
+    protected function preparedException(Formattable $data, string $class): \Throwable
     {
-        if (!$data instanceof $class) {
-            throw new \InvalidArgumentException($class . ' expected, ' . get_class($data) . ' given');
-        }
+        return
+            new \InvalidArgumentException($class . ' expected, ' . get_class($data) . ' given');
     }
 }
