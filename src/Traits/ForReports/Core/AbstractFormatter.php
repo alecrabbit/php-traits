@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace AlecRabbit\Traits\ForReports\Contracts;
+namespace AlecRabbit\Traits\ForReports\Core;
 
-use AlecRabbit\Traits\ForReports\Core\Formattable;
+use AlecRabbit\Traits\ForReports\Contracts\FormatterInterface;
 
 abstract class AbstractFormatter implements FormatterInterface
 {
