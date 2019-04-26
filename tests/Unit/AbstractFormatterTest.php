@@ -14,7 +14,7 @@ class AbstractFormatterTest extends TestCase
     public function check(): void
     {
         $str =
-            $this->obj->process(
+            $this->obj->format(
                 new class extends Formattable
                 {
                 }

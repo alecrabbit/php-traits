@@ -15,7 +15,7 @@ abstract class AbstractFormatter implements FormatterInterface
         $this->options = $options ?? 0;
     }
 
-    abstract public function process(Formattable $data): string;
+    abstract public function format(Formattable $data): string;
 
     /**
      * @param Formattable $data

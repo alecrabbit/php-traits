@@ -9,7 +9,7 @@ class ExtendsAbstractFormatter extends AbstractFormatter
 {
     public const EXPECTED_CLASS_STUB = 'ExpectedClassStub';
 
-    public function process(Formattable $data): string
+    public function format(Formattable $data): string
     {
         return $this->errorMessage($data, self::EXPECTED_CLASS_STUB);
     }

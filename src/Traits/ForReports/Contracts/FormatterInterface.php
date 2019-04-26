@@ -11,5 +11,5 @@ interface FormatterInterface
      */
     public function __construct(?int $options = null);
 
-    public function process(Formattable $data): string;
+    public function format(Formattable $data): string;
 }
