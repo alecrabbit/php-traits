@@ -24,13 +24,29 @@ OPTION_NO_RESTART=1
 
 help_message
 
+if [[ -e "VERSION" ]]
+then
+    ver="Version: $(<VERSION)"
+else
+    ver="No version file"
+fi
+
 header "Tests, coverage, analysis and metrics script"
-dark "Setting terminal title... \n'${dir}'"
-set_title "${dir}"
+dark "${ver}"
+if [[ -e "${TITLE_FILE}" ]]
+then
+    title=$(<${TITLE_FILE})
+else
+    title="${dir}"
+    dark "No title file found searched for: ${TITLE_FILE}"
+fi
+dark "Setting terminal title... \n'${title}'"
+set_title "${title}"
+
 
 if [[ ${EXEC} == 0 ]]
 then
-    echo "No-Exec selected."
+    error "No-Exec selected."
 fi
 options_enabled
 

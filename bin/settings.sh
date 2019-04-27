@@ -96,6 +96,7 @@ PHPUNIT_COVERAGE_HTML_REPORT="${TMP_DIR}/${COVERAGE_DIR}/html"
 PHPUNIT_COVERAGE_CLOVER_REPORT="${TMP_DIR}/${COVERAGE_DIR}/clover.xml"
 XDEBUG_FILTER_FILE="${TMP_DIR}/xdebug-filter.php"
 TEST_REPORT_INDEX="./../${TESTS_DIR}/report.html"
+TITLE_FILE="./../TERMINAL_TITLE"
 HEADER="$(basename $(dirname "$(pwd)"))"
 
 if [[ ${COVERAGE} == 1 ]]
