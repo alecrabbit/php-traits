@@ -38,7 +38,14 @@ then
     title=$(<${TITLE_FILE})
 else
     title="${dir}"
-    dark "No title file found searched for: ${TITLE_FILE}"
+    if [[ -x "$(command -v realpath)" ]]
+    then
+      title_file="$(realpath ${TITLE_FILE})"
+    else
+      title_file=${TITLE_FILE}
+    fi
+    error "No title file found."
+    dark "Searched for: ${title_file}"
 fi
 dark "Setting terminal title... \n'${title}'"
 set_title "${title}"
