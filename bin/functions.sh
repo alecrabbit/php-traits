@@ -36,11 +36,21 @@ no-exec () {
     comment "No-Exec..."
 }
 
-enabled () {
-    light_green " enabled."
+is_active () {
+    if [[ ${1} == 1 ]]
+    then
+        enabled "${2}"
+    else
+        disabled "${2}"
+    fi
 }
+
+enabled () {
+    echo -e "[${LIGHT_GREEN} ON ${NC}]  ${1}"
+}
+
 disabled () {
-    dark " disabled."
+    echo -e "[${DARK} -- ${NC}]  ${1}"
 }
 
 help_message () {
@@ -66,57 +76,13 @@ fi
 }
 
 options_enabled () {
-    printf "Container restart"
-    if [[ ${RESTART_CONTAINER} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-
-    printf "Analysis"
-    if [[ ${ANALYZE} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-    printf "PHPMetrics"
-    if [[ ${METRICS} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-    printf "Multi-tester"
-    if [[ ${MULTI_TEST} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-    printf "PHPUnit"
-    if [[ ${PHPUNIT} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-    printf "Coverage"
-    if [[ ${COVERAGE} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-    printf "Beautifier"
-    if [[ ${BEAUTY} == 1 ]]
-    then
-        enabled
-    else
-        disabled
-    fi
-
+    is_active ${RESTART_CONTAINER} "Container restart"
+    is_active ${ANALYZE} "Analysis"
+    is_active ${METRICS} "PHPMetrics"
+    is_active ${MULTI_TEST} "Multi-tester"
+    is_active ${PHPUNIT} "PHPUnit"
+    is_active ${COVERAGE} "Coverage"
+    is_active ${BEAUTY} "Beautifier"
 }
 
 generate_report_file () {
